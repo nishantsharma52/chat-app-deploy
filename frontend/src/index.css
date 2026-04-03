@@ -34,3 +34,22 @@ html {
   scrollbar-width: thin;
   scrollbar-color: rgba(31, 114, 126, 0.6) transparent;
 }
+
+/* Container ko relative karna zaruri hai */
+.avatar {
+  position: relative;
+  display: inline-block;
+}
+
+/* Online wale green dot ka design */
+.avatar.online::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  right: 2px;
+  width: 15px;
+  height: 15px;
+  background-color: #22c55e; /* Green color */
+  border-radius: 50%; /* Gola banane ke liye */
+  border: 2px solid white;
+}
