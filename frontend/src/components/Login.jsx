@@ -23,7 +23,7 @@ const Login = () => {
         withCredentials:true
       })
       toast.success("logged in sucessfully")
-      navigate("/homepage")
+      navigate("/")
       console.log(res.data)
       dispatch(setAuthUser(res.data))
     } catch (error) {
