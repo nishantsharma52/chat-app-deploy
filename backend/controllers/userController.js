@@ -19,10 +19,9 @@ export const register = async (req, res) => {
         }
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // profilePhoto
-        const maleProfilePhoto = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-        const femaleProfilePhoto = `https://avatar.iran.liara.run/public/girl?username=${username}`;
-
+        const maleProfilePhoto = `https://api.dicebear.com/7.x/lorelei/svg?seed=${username}&backgroundColor=b6e3f4&hair=variant01,variant02,variant03&earringsProbability=0`
+        const femaleProfilePhoto = `https://api.dicebear.com/9.x/lorelei/svg?seed=${username}&backgroundColor=ffdfbf&beardProbability=0&earringsProbability=100&hairAccessories=flowers&hairAccessoriesProbability=100&mouth=happy01,happy02&eyes=variant02,variant04`
+        
         await User.create({
             fullName,
             username,
@@ -79,22 +78,22 @@ export const login = async (req, res) => {
 
 export const logout = (req, res) => {
     try {
-        return res.status(200).cookie("token", "", {maxAge:0}).json({
-            message:"logged out successfully"
+        return res.status(200).cookie("token", "", { maxAge: 0 }).json({
+            message: "logged out successfully"
         })
     } catch (error) {
         console.log(error);
     }
 }
 
-export const getOtherUsers = async (req, res)=> {
-    try { 
+export const getOtherUsers = async (req, res) => {
+    try {
         const loggedInUserId = req.id;
-        const otherUsers = await User.find({_id:{$ne:loggedInUserId}}).select("-password")
+        const otherUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password")
         return res.status(200).json(otherUsers)
-        
+
     } catch (error) {
         console.log(error);
-        
+
     }
 }
