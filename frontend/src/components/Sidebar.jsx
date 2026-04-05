@@ -1,28 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { BiSearchAlt2 } from "react-icons/bi";
 import OtherUsers from './OtherUsers';
 import axios from 'axios';
 import toast from "react-hot-toast"
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux';
+import { setOtherUsers } from '../redux/userSlice';
+
 
 const Sidebar = () => {
+    const [search, SetSearch] = useState("")
+    const {otherUsers} = useSelector(store=>store.user)
     const navigate = useNavigate()
-    const logoutHandler =  async () =>{
+    const dispatch = useDispatch()
+    const logoutHandler = async () => {
         try {
             const res = await axios.get(`http://localhost:8080/api/v1/user/logout`);
             navigate("/login")
             toast.success(res.data.message)
         } catch (error) {
             console.log(error);
-            
-            
+
+
         }
+    }
+    const searchSubmitHandler = (e) => {
+        e.preventDefault()
+        const conversationUser = otherUsers?.find((user)=> user.fullName.toLowerCase().includes(search.toLowerCase()))
+        if(conversationUser) {
+            dispatch(setOtherUsers([conversationUser]))
+        }else{
+            toast.error("User not found")
+
+        }
+
     }
     return (
         <div className='borde-r border-slate-500 p-4 flex flex-col'>
-            <form action="" className='flex items-center gap-2'>
+            <form onSubmit={searchSubmitHandler} action="" className='flex items-center gap-2'>
                 <input
-                    className='input input-bordered rounded-md outline-none bg-white' type="text"
+                    value={search}
+                    onChange={(e) => SetSearch(e.target.value)}
+                    className='input text-black input-bordered rounded-md outline-none bg-white' type="text"
                     placeholder='Search...'
                 />
                 <button type='submit' className='btn  bg-zinc-700'>
@@ -30,7 +49,7 @@ const Sidebar = () => {
                 </button>
             </form>
             <div className='divider px-3'> </div>
-            <OtherUsers/>
+            <OtherUsers />
             <div className='mt-2'>
                 <button onClick={logoutHandler} className='btn btn-sm '>Logout</button>
             </div>
