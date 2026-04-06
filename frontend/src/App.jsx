@@ -47,7 +47,7 @@ function App() {
 
   useEffect(() => {
     if (authUser) {
-      const socketInstance = io('http://localhost:8080', {
+      const socketInstance = io('https://chat-app-deploy-9wkt.onrender.com', {
         query: { userId: authUser._id }
       });
       dispatch(setSocket(socketInstance))
