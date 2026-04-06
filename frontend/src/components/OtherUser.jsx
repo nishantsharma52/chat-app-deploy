@@ -9,9 +9,7 @@ const OtherUser = ({ user }) => {
   const selectedUserHandler = (user) => {
     dispatch(setSelectedUser(user))
   }
-  console.log("online users",onlineUsers);
-  console.log(user._id);
-  
+
  
   
   

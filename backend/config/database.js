@@ -12,6 +12,7 @@ const databaseConnection = async () => {
     // Agar tumhare MONGO_URI ke end mein DB ka naam nahi hai, toh yahan add kar lena
    await mongoose.connect(process.env.MONGO_URI).then(() => {
         console.log("MongoDB connected successfully");
+      
     }).catch((error) => {
         console.log("Connection Error:", error);
     });
