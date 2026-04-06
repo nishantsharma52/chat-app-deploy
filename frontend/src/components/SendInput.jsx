@@ -16,7 +16,7 @@ const SendInput = () => {
         try {
             console.log("Selected User:", selectedUser?._id)
             console.log("Auth User:", authUser?._id)
-            const res = await axios.post(`http://localhost:8080/api/v1/message/send/${selectedUser?._id}`, {message}, {
+            const res = await axios.post(`https://chat-app-deploy-9wkt.onrender.com/api/v1/message/send/${selectedUser?._id}`, {message}, {
                 headers: {
                     "Content-Type": "application/json"
                 },

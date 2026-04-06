@@ -16,7 +16,7 @@ const Message = ({ message }) => {
 
   const deleteHandler = async (type) => {
     try {
-      const res = await axios.post(`http://localhost:8080/api/v1/message/delete/${message._id}`, 
+      const res = await axios.post(`https://chat-app-deploy-9wkt.onrender.com/api/v1/message/delete/${message._id}`, 
         { type }, 
         { withCredentials: true }
       );
