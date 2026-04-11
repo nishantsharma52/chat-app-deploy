@@ -37,16 +37,15 @@ const Message = ({ message }) => {
   return (
     <div ref={scroll} className={`chat ${isSender ? "chat-end" : "chat-start"} group mb-4`}>
       <div className="chat-image avatar">
-        <div className="w-10 rounded-full border border-gray-400">
+        <div className="w-8 sm:w-10 rounded-full border border-gray-400">
           <img alt="User" src={isSender ? authUser?.profilePhoto : selectedUser?.profilePhoto} />
         </div>
       </div>
       
       <div className="flex flex-col relative">
-        <div className={`chat-bubble max-w-[250px] break-words shadow-sm ${!isSender ? 'bg-white text-gray-800' : 'bg-[#005c4b] text-white'}`}>
+        <div className={`chat-bubble max-w-[180px] sm:max-w-[250px] md:max-w-[320px] break-words shadow-sm ${!isSender ? 'bg-white text-gray-800' : 'bg-[#005c4b] text-white'}`}>
           {message?.message}
           
-          {/* Chhota Trash Icon jo sirf hover pe dikhega */}
           <button 
             onClick={() => setShowOptions(true)}
             className={`absolute top-0 opacity-0 group-hover:opacity-100 transition-all p-1 text-gray-400 hover:text-red-500 ${isSender ? "-left-8" : "-right-8"}`}
@@ -60,10 +59,8 @@ const Message = ({ message }) => {
         <time className="text-[10px] opacity-50 mt-1 self-end">{new Date(message.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</time>
       </div>
 
-      {/* --- WHATSAPP STYLE CENTER POPUP --- */}
       {showOptions && (
         <div className="fixed inset-0 z-[9999] flex items-center justify-center p-4 backdrop-blur-[2px] bg-black/20">
-          {/* Bahar click karne par band ho jaye isliye ye overlay */}
           <div className="absolute inset-0" onClick={() => setShowOptions(false)}></div>
           
           <div className="bg-white rounded-2xl shadow-2xl w-full max-w-[280px] overflow-hidden z-10 animate-in fade-in zoom-in duration-200">
