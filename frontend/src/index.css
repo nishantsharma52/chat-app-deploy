@@ -2,7 +2,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
+}
 
 body{
     background-image: url(/bg.avif) ;
