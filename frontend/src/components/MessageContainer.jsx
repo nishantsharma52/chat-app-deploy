@@ -11,7 +11,6 @@ const MessageContainer = () => {
     const dispatch = useDispatch()
     const isOnline = onlineUsers?.includes(selectedUser?._id)
 
-    // Jab selectedUser badle turant messages clear karo
     useEffect(() => {
         dispatch(setMessages([]))
     }, [selectedUser, dispatch])
@@ -22,41 +21,46 @@ const MessageContainer = () => {
 
     return (
         <>
-            {
-                selectedUser !== null ? (
-                    <div className='md:min-w-[550px] flex flex-col flex-1 overflow-hidden'>
-                        <div>
-                            <div className='flex gap-2 items-center bg-zinc-800 text-white px-4 py-2 mb-2'>
-                                <button
-                                    className='sm:hidden flex items-center justify-center mr-1'
-                                    onClick={() => dispatch(setSelectedUser(null))}
-                                >
-                                    <IoArrowBack className='w-5 h-5 text-white' />
-                                </button>
-                                <div className={`avatar ${isOnline ? "online" : ""}`}>
-                                    <div className='w-12 rounded-full'>
-                                        <img src={selectedUser?.profilePhoto} alt="user-profile" />
-                                    </div>
-                                </div>
-                                <div className='flex flex-col flex-1'>
-                                    <div className='flex justify-between gap-2'>
-                                        <p>{selectedUser?.fullName}</p>
-                                    </div>
-                                </div>
+            {selectedUser !== null ? (
+                <div style={{ display: 'flex', flexDirection: 'column', height: '100%', overflow: 'hidden' }}>
+
+                    {/* Header - kabhi scroll nahi hoga */}
+                    <div style={{ flexShrink: 0 }} className='flex gap-2 items-center bg-zinc-800 text-white px-4 py-2'>
+                        <button
+                            className='sm:hidden flex items-center justify-center mr-1'
+                            onClick={() => dispatch(setSelectedUser(null))}
+                        >
+                            <IoArrowBack className='w-5 h-5 text-white' />
+                        </button>
+                        <div className={`avatar ${isOnline ? "online" : ""}`}>
+                            <div className='w-12 rounded-full'>
+                                <img src={selectedUser?.profilePhoto} alt="user-profile" />
                             </div>
                         </div>
-                        <div className='flex-1 overflow-y-auto'>
-                            <Messages />
+                        <div className='flex flex-col flex-1'>
+                            <div className='flex justify-between gap-2'>
+                                <p>{selectedUser?.fullName}</p>
+                            </div>
                         </div>
+                    </div>
+
+                    {/* Messages - sirf yahi scroll karega */}
+                    <div style={{ flex: 1, overflowY: 'auto', minHeight: 0 }}>
+                        <Messages />
+                    </div>
+
+                    {/* Input - kabhi scroll nahi hoga */}
+                    <div style={{ flexShrink: 0 }}>
                         <SendInput />
                     </div>
-                ) : (
-                    <div className='flex-1 flex flex-col justify-center items-center'>
-                        <h1 className='text-4xl text-white font-bold'>Hi,{authUser?.fullName}</h1>
-                        <h1 className='text-2xl text-white'>Let's Start Conversation</h1>
-                    </div>
-                )
-            }
+
+                </div>
+            ) : (
+                <div className='flex-1 flex flex-col justify-center items-center'>
+                    <h1 className='text-4xl text-white font-bold'>Hi,{authUser?.fullName}</h1>
+                    <h1 className='text-2xl text-white'>Let's Start Conversation</h1>
+                </div>
+            )}
         </>
     )
 }
