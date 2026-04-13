@@ -7,7 +7,7 @@ const HomePage = () => {
   const { selectedUser } = useSelector(store => store.user)
 
   return (
-    <div className='flex w-screen h-screen text-black overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 shadow-md'>
+    <div className='flex w-screen h-[100dvh] text-black overflow-hidden bg-white/10 backdrop-blur-md border border-white/20 shadow-md'>
 
       {/* SIDEBAR */}
       <div className={`

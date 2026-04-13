@@ -23,7 +23,7 @@ const MessageContainer = () => {
     return (
         <>
             {selectedUser ? (
-                <div className='flex flex-col h-full overflow-hidden'>
+                <div className='flex flex-col h-[100dvh] overflow-hidden'>
 
                     {/* ✅ HEADER (FIXED) */}
                     <div className='flex items-center gap-2 bg-zinc-800 text-white px-4 py-2 flex-shrink-0'>
@@ -51,7 +51,7 @@ const MessageContainer = () => {
                     </div>
 
                     {/* ✅ INPUT (FIXED BOTTOM) */}
-                    <div className='flex-shrink-0'>
+                    <div className='flex-shrink-0 sticky border-0 z-10'>
                         <SendInput />
                     </div>
 
