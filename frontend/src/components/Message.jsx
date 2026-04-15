@@ -43,7 +43,7 @@ const Message = ({ message }) => {
       </div>
       
       <div className="flex flex-col relative">
-        <div className={`chat-bubble max-w-[180px] sm:max-w-[250px] md:max-w-[320px] break-words shadow-sm ${!isSender ? 'bg-white text-gray-800' : 'bg-[#005c4b] text-white'}`}>
+        <div className={`chat-bubble max-w-[180px] sm:max-w-[250px] md:max-w-[320px] break-words shadow-sm ${!isSender ? 'bg-white text-gray-800' : 'bg-black text-white'}`}>
           {message?.message}
           
           <button 
