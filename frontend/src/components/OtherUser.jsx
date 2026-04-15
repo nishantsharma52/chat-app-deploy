@@ -19,7 +19,7 @@ const OtherUser = ({ user }) => {
           </div>
         </div>
         <div className='flex flex-col flex-1 min-w-0'>
-          <div className='flex justify-between gap-2'>
+          <div className='flex text-white justify-between gap-2'>
             <p className='truncate '>{user?.fullName}</p>
           </div>
         </div>
