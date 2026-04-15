@@ -35,18 +35,20 @@ const SendInput = () => {
 
     return (
         <div className='w-full px-2 py-2 bg-white/20 backdrop-blur-md border-t border-white/10'>
-            
+
             <form onSubmit={onSubmitHandler}>
                 <div className='relative flex items-center'>
-                    
+
                     <input
                         value={message}
                         onChange={(e) => setMessage(e.target.value)}
                         type="text"
                         placeholder='Send a message...'
-                        className='w-full p-2 sm:p-3 pr-12 text-sm sm:text-base rounded-full 
-                        bg-white text-black 
-                        outline-none border border-gray-300'
+                        className='w-full p-3 pr-12 text-sm rounded-lg 
+                    bg-white/50 backdrop-blur-md 
+                    text-white/110 placeholder-white/110 
+                    border border-white/20 
+                    focus:outline-none focus:ring-2 focus:ring-cyan-400/50'
                     />
 
                     <button
